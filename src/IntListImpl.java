@@ -1,4 +1,4 @@
-public class ListOfInt implements IntList {
+public class IntListImpl implements IntList {
 
     private int[] arr = new int[10];
     private int count = 0;
@@ -6,7 +6,7 @@ public class ListOfInt implements IntList {
     @Override
     public void add(int i) {
         if (count >= this.arr.length) {
-            makeArray();
+            increasingArray();
         }
         this.arr[this.count] = i;
         this.count++;
@@ -16,7 +16,7 @@ public class ListOfInt implements IntList {
     public void insert(int index, int value) {
         this.count++;
         if (count >= this.arr.length) {
-            makeArray();
+            increasingArray();
         }
 
         int[] arrBuff = new int[this.arr.length - index];
@@ -40,13 +40,12 @@ public class ListOfInt implements IntList {
 
     @Override
     public int size() {
-        return this.arr.length;
+        return this.count;
     }
 
     @Override
     public int capacity() {
-
-       return (this.arr.length - this.count);
+       return this.arr.length;
     }
 
     @Override
@@ -88,7 +87,6 @@ public class ListOfInt implements IntList {
         for (int i = 0, k = 0; i < this.arr.length; i++){
             if (value == this.arr[i]){
                 this.count--;
-                continue;
             }
             else {
                 arr[k] = this.arr[i];
@@ -105,7 +103,6 @@ public class ListOfInt implements IntList {
         for (int i = 0, k = 0; i < this.arr.length; i++){
             if (i == index){
                 this.count--;
-                continue;
             }
             else {
                 arr[k] = this.arr[i];
@@ -117,10 +114,10 @@ public class ListOfInt implements IntList {
 
     @Override
     public IntList subList(int fromIndex, int toIndex) {
-        IntList list = new ListOfInt();
+        IntList list = new IntListImpl();
 
         for (int i = fromIndex; i <= toIndex; i++) {
-            list.add(this.getByIndex(i));
+            list.add(getByIndex(i));
         }
         return list;
     }
@@ -130,7 +127,7 @@ public class ListOfInt implements IntList {
         return this.arr;
     }
 
-    private void makeArray() {
+    private void increasingArray() {
         int newSize = (int)(this.arr.length * 1.5) + 1;
         int[] arr = new int[newSize];
 

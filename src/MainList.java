@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 public class MainList {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        IntList intList = new ListOfInt();
+        IntList intList = new IntListImpl();
 
         for (int i = 0; i < 5; i++) {
             int num = Integer.parseInt(bufferedReader.readLine());
